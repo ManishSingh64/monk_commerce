@@ -30,7 +30,7 @@ export const DiscountHeader = styled.div`
 `;
 export const InputWrapper = styled.div`
   margin-top: 1rem;
-  //   border: 1px solid blue;
+  // border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -38,7 +38,7 @@ export const InputWrapper = styled.div`
 
 export const DiscountButton = styled.button`
   border: none;
-  width: 35%;
+
   height: 3.5rem;
   background-color: #65a365;
   color: white;

@@ -6,12 +6,13 @@ import FormControl from "@mui/material/FormControl";
 
 import EditIcon from "@mui/icons-material/Edit";
 
-const InputBox = ({ setOpenmodal }) => {
+const InputBox = ({ setOpenmodal, input, idx, setSelectedIdx }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
-  const handleEdit = () => {
+  const handleEdit = (event) => {
+    event.stopPropagation();
     setOpenmodal(true);
-    console.log("eidit");
+    setSelectedIdx(idx - 1);
   };
 
   return (
@@ -20,6 +21,7 @@ const InputBox = ({ setOpenmodal }) => {
         <FormControl sx={{ m: 1, width: "30ch" }} variant="outlined">
           <OutlinedInput
             placeholder="Select Product"
+            value={input.label}
             endAdornment={
               <InputAdornment position="end">
                 <EditIcon

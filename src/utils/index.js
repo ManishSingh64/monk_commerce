@@ -23,9 +23,10 @@ export const formatData = (apiData) => {
     let tempObj = {
       id: data?.id,
       label: data?.title,
+      image: data?.image, // storing as object {src: "llink"}
     };
 
-    tempObj["children"] = data?.variants.map((el) => {
+    tempObj["children"] = data?.variants?.map((el) => {
       const childtemObj = {
         id: el?.id,
         label: el?.option1,
@@ -39,4 +40,37 @@ export const formatData = (apiData) => {
   });
 
   return newData;
+};
+
+export const formatDataFunc = (data) => {
+  // console.log("formatDataFunc", data);
+  let newData = data?.map((el, i) => {
+    el["id"] = i + 1;
+
+    return el;
+  });
+
+  return newData;
+};
+
+export const formatChildrenFunc = (data) => {
+  // console.log("formatChildrenFunc", data);
+  const updatedData = data?.children?.map((el, i) => {
+    el["id"] = i;
+    return el;
+  });
+  return updatedData;
+};
+
+export const checkCountFunc = (data) => {
+  let count = 0;
+
+  data?.forEach((el, i) => {
+    let filteredData = el?.children.filter((item) => item.checked).length;
+    if (filteredData) {
+      count++;
+    }
+  });
+
+  return count;
 };
