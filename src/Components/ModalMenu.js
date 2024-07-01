@@ -181,13 +181,16 @@ const ModalMenu = ({ openmodal, setOpenmodal, handleEditProduct }) => {
   };
 
   const handleChildChange = (parentId, childId, parent, child) => (event) => {
+    console.log("paren2", parentId, childId, parent, child);
+    const checked = event.target.checked;
+
     const updatedData = data.map((parent) => {
       if (parent.id === parentId) {
         const updatedChildren = parent.children.map((child) => {
           if (child.id === childId) {
             return {
               ...child,
-              checked: event.target.checked,
+              checked,
             };
           }
           return child;
@@ -197,9 +200,14 @@ const ModalMenu = ({ openmodal, setOpenmodal, handleEditProduct }) => {
           children: updatedChildren,
         };
       }
+
       return parent;
     });
     setData(updatedData);
+
+    if (checked) {
+    } else {
+    }
   };
 
   const handleSearchQuery = (event) => {

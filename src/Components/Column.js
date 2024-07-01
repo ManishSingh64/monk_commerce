@@ -6,7 +6,13 @@ import React, { useState } from "react";
 import InputRow from "./InputRow";
 // import { Task } from "./Task";
 
-const Column = ({ inputs, setOpenmodal, setSelectedIdx, arr }) => {
+const Column = ({
+  inputs,
+  setOpenmodal,
+  setSelectedIdx,
+  arr,
+  handleDeleteChiddren,
+}) => {
   return (
     <div>
       <SortableContext items={inputs} strategy={verticalListSortingStrategy}>
@@ -19,6 +25,7 @@ const Column = ({ inputs, setOpenmodal, setSelectedIdx, arr }) => {
               setOpenmodal={setOpenmodal}
               input={input}
               setSelectedIdx={setSelectedIdx}
+              handleDeleteChiddren={handleDeleteChiddren}
             />
           );
         })}

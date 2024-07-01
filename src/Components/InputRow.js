@@ -15,7 +15,14 @@ import ChildrenRow from "./ChildrenRow";
 import { formatChildrenFunc } from "../utils";
 import { DndContext, closestCorners } from "@dnd-kit/core";
 
-const InputRow = ({ id, idx, setOpenmodal, input, setSelectedIdx }) => {
+const InputRow = ({
+  id,
+  idx,
+  setOpenmodal,
+  input,
+  setSelectedIdx,
+  handleDeleteChiddren,
+}) => {
   //   console.log("input", input);
   const [discount, setDiscount] = useState(false);
   const [childrenData, setChildrenData] = useState([]);
@@ -108,7 +115,15 @@ const InputRow = ({ id, idx, setOpenmodal, input, setSelectedIdx }) => {
           >
             {showVariants &&
               input?.children?.map((item, i) => {
-                return <ChildrenRow key={item.id} child={item} id={i} />;
+                return (
+                  <ChildrenRow
+                    key={item.id}
+                    child={item}
+                    id={i}
+                    chlidId={item?.id}
+                    handleDeleteChiddren={handleDeleteChiddren}
+                  />
+                );
               })}
           </SortableContext>
         </div>

@@ -64,6 +64,19 @@ const Home = () => {
     }
   };
 
+  const handleDeleteChiddren = (e, childId) => {
+    console.log("here", childId, inputs);
+    const updatedData = inputs.map((el) => {
+      el["children"] = el?.children?.filter((child) => child.id != childId);
+
+      return el;
+    });
+
+    console.log("delete", updatedData);
+    setInputs([...updatedData]);
+    // console.log("updatedData: ", updatedData);
+  };
+
   const getTaskPos = (id) => {
     // active = 2 => 1, over = 1 => 0
     return inputs.findIndex((input) => input.id === id);
@@ -98,6 +111,7 @@ const Home = () => {
           setSelectedIdx={setSelectedIdx}
           setOpenmodal={setOpenmodal}
           arr={[1, 2]}
+          handleDeleteChiddren={handleDeleteChiddren}
         />
       </DndContext>
 

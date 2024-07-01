@@ -1,11 +1,12 @@
 import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { styled } from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { useSortable } from "@dnd-kit/sortable";
 
-const ChildrenRow = ({ child, id }) => {
-  console.log(child);
+const ChildrenRow = ({ child, id, handleDeleteChiddren, chlidId }) => {
+  // console.log(child);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -17,13 +18,8 @@ const ChildrenRow = ({ child, id }) => {
   };
 
   return (
-    <VariantWrapper
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-    >
-      <div>
+    <VariantWrapper ref={setNodeRef} style={style}>
+      <div {...attributes} {...listeners}>
         <DragIndicatorIcon color="disabled" style={{ cursor: "grab" }} />
       </div>
       <div
@@ -40,6 +36,10 @@ const ChildrenRow = ({ child, id }) => {
       >
         {child?.label}
       </div>
+      <CloseIcon
+        style={{ cursor: "pointer" }}
+        onClick={(e) => handleDeleteChiddren(e, chlidId)}
+      />
     </VariantWrapper>
   );
 };
