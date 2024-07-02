@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { DiscountButton, InputWrapper } from "../Pages/Home.style";
 import InputBox from "./InputBox";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
+import CloseIcon from "@mui/icons-material/Close";
+
 import {
   SortableContext,
   arrayMove,
@@ -22,6 +24,8 @@ const InputRow = ({
   input,
   setSelectedIdx,
   handleDeleteChiddren,
+  handleDeleteParent,
+  parentId,
 }) => {
   //   console.log("input", input);
   const [discount, setDiscount] = useState(false);
@@ -38,9 +42,9 @@ const InputRow = ({
       setChildrenData(formattedChildren);
     };
 
-    setTimeout(() => {
-      fetchChildrenData();
-    }, 2000);
+    // setTimeout(() => {
+    fetchChildrenData();
+    // }, 2000);
   }, [input]);
 
   const getTaskPos = (id) => {
@@ -98,6 +102,11 @@ const InputRow = ({
             Add Discount
           </DiscountButton>
         )}
+        <CloseIcon
+          onClick={() => handleDeleteParent(parentId)}
+          color="disabled"
+          style={{ cursor: "pointer" }}
+        />
       </InputWrapper>
 
       <ShowVariantText onClick={() => setShowVariants((prev) => !prev)}>
@@ -121,6 +130,7 @@ const InputRow = ({
                     child={item}
                     id={i}
                     chlidId={item?.id}
+                    parentId={parentId}
                     handleDeleteChiddren={handleDeleteChiddren}
                   />
                 );

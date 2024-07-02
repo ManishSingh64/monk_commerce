@@ -5,7 +5,13 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { useSortable } from "@dnd-kit/sortable";
 
-const ChildrenRow = ({ child, id, handleDeleteChiddren, chlidId }) => {
+const ChildrenRow = ({
+  child,
+  id,
+  handleDeleteChiddren,
+  chlidId,
+  parentId,
+}) => {
   // console.log(child);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -38,7 +44,7 @@ const ChildrenRow = ({ child, id, handleDeleteChiddren, chlidId }) => {
       </div>
       <CloseIcon
         style={{ cursor: "pointer" }}
-        onClick={(e) => handleDeleteChiddren(e, chlidId)}
+        onClick={(e) => handleDeleteChiddren(e, chlidId, parentId)}
       />
     </VariantWrapper>
   );

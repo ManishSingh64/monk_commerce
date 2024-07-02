@@ -12,6 +12,7 @@ const Column = ({
   setSelectedIdx,
   arr,
   handleDeleteChiddren,
+  handleDeleteParent,
 }) => {
   return (
     <div>
@@ -22,10 +23,12 @@ const Column = ({
               //   key={input?.id}
               id={i + 1}
               idx={i + 1}
+              parentId={input?.id}
               setOpenmodal={setOpenmodal}
               input={input}
               setSelectedIdx={setSelectedIdx}
               handleDeleteChiddren={handleDeleteChiddren}
+              handleDeleteParent={handleDeleteParent}
             />
           );
         })}

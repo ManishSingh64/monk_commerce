@@ -64,17 +64,22 @@ const Home = () => {
     }
   };
 
-  const handleDeleteChiddren = (e, childId) => {
-    console.log("here", childId, inputs);
-    const updatedData = inputs.map((el) => {
-      el["children"] = el?.children?.filter((child) => child.id != childId);
-
-      return el;
-    });
-
-    console.log("delete", updatedData);
+  const handleDeleteParent = (parentId) => {
+    const updatedData = inputs?.filter((el) => el.id !== parentId);
     setInputs([...updatedData]);
-    // console.log("updatedData: ", updatedData);
+  };
+
+  const handleDeleteChiddren = (e, childId, parentId) => {
+    const parentIndex = inputs.findIndex((parent) => parent.id === parentId);
+    const parent = inputs[parentIndex];
+
+    parent.children = parent.children.filter((child) => child.id !== childId);
+
+    if (parent.children.length === 0) {
+      inputs.splice(parentIndex, 1);
+    }
+
+    setInputs([...inputs]);
   };
 
   const getTaskPos = (id) => {
@@ -112,6 +117,7 @@ const Home = () => {
           setOpenmodal={setOpenmodal}
           arr={[1, 2]}
           handleDeleteChiddren={handleDeleteChiddren}
+          handleDeleteParent={handleDeleteParent}
         />
       </DndContext>
 
